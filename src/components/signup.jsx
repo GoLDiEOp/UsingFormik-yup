@@ -50,7 +50,7 @@ function Signup() {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {errors.name && touched.name ? (
+            {errors.email && touched.email ? (
               <p className="form-error">{errors.email}</p>
             ) : null}
             <input
