@@ -1,48 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { signUpSchema } from "../schemas";
-import { Link } from "react-router-dom";
+import { Loginschema } from "../schemas";
 
 const initialValues = {
-  name: "",
   email: "",
   password: "",
-  confirm_password: "",
 };
-
-function Signup() {
+function Login() {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-      validationSchema: signUpSchema,
+      validationSchema: Loginschema,
       onSubmit: (values, action) => {
         console.log(values);
         action.resetForm();
       },
     });
 
-  console.log(errors);
-
+    
   return (
     <div>
       <>
         <FormContainer>
           <form action="" onSubmit={(event) => handleSubmit(event)}>
             <div className="brand">
-              <h1>Registration Form</h1>
+              <h1>Login</h1>
             </div>
-            <input
-              type="text"
-              placeholder="Username"
-              name="name"
-              value={values.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.name && touched.name ? (
-              <p className="form-error">{errors.name}</p>
-            ) : null}
             <input
               type="email"
               placeholder="Email"
@@ -65,20 +50,10 @@ function Signup() {
             {errors.password && touched.password ? (
               <p className="form-error">{errors.password}</p>
             ) : null}
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="confirm_password"
-              value={values.confirm_password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.confirm_password && touched.confirm_password ? (
-              <p className="form-error">{errors.confirm_password}</p>
-            ) : null}
-            <button type="submit">Sign Up</button>
+
+            <button type="submit">Login </button>
             <span>
-              Already have an account ? <Link to="/login">Login.</Link>
+              Don't have an account ? <Link to="/register">Create One.</Link>
             </span>
           </form>
         </FormContainer>
@@ -116,7 +91,7 @@ const FormContainer = styled.div`
     gap: 2rem;
     background-color: #00000076;
     border-radius: 2rem;
-    padding: 3rem 5rem;
+    padding: 5rem;
   }
   input {
     background-color: transparent;
@@ -142,7 +117,7 @@ const FormContainer = styled.div`
     font-size: 1rem;
     text-transform: uppercase;
     &:hover {
-      background-color: #713eff;
+      background-color: #4e0eff;
     }
   }
   .form-error {
@@ -162,4 +137,4 @@ const FormContainer = styled.div`
   }
 `;
 
-export default Signup;
+export default Login;
