@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { Loginschema } from "../schemas";
@@ -8,7 +8,9 @@ const initialValues = {
   email: "",
   password: "",
 };
+
 function Login() {
+  const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -16,10 +18,10 @@ function Login() {
       onSubmit: (values, action) => {
         console.log(values);
         action.resetForm();
+        navigate("/");
       },
     });
 
-    
   return (
     <div>
       <>

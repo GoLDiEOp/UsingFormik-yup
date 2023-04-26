@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -12,6 +12,7 @@ const initialValues = {
 };
 
 function Signup() {
+  const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -19,6 +20,7 @@ function Signup() {
       onSubmit: (values, action) => {
         console.log(values);
         action.resetForm();
+        navigate("/");
       },
     });
 
